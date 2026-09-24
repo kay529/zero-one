@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>崔博凯</title>
+    <link>https://kay529.github.io/zero-one</link>
+    <description>崔博凯的个人主页：作品、笔记与联系方式。</description>
+    <language>zh-CN</language>
+    <atom:link href="https://kay529.github.io/zero-one/rss.xml" rel="self" type="application/rss+xml"/>
+
+  </channel>
+</rss>

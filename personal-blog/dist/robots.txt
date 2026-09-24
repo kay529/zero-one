@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://kay529.github.io/zero-one/sitemap.xml

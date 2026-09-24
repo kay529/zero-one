@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>笔记与随想 · 崔博凯</title>
+<meta name="description" content="崔博凯 的笔记与文章列表。">
+<meta name="author" content="崔博凯">
+<meta name="keywords" content="崔博凯,个人主页,前端,笔记">
+<meta name="theme-color" content="#2c5f8d">
+<link rel="canonical" href="https://kay529.github.io/zero-one/blog.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="崔博凯">
+<meta property="og:title" content="笔记与随想 · 崔博凯">
+<meta property="og:description" content="崔博凯 的笔记与文章列表。">
+<meta property="og:url" content="https://kay529.github.io/zero-one/blog.html">
+<meta property="og:image" content="https://kay529.github.io/zero-one/og.svg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="笔记与随想 · 崔博凯">
+<meta name="twitter:description" content="崔博凯 的笔记与文章列表。">
+<meta name="twitter:image" content="https://kay529.github.io/zero-one/og.svg">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="avatar.svg">
+<link rel="alternate" type="application/rss+xml" title="崔博凯 RSS" href="rss.xml">
+<link rel="stylesheet" href="style.css">
+<style>
+/* 主题色由 site.config.json 注入。这里必须用带 html 前缀的选择器：
+   否则 [data-theme="dark"] 与内联的 :root 特异性相同，而后加载的内联样式
+   会永久压过深色主题的取值，导致深色模式下主题色换不掉。 */
+html:root{--accent-cfg:#2c5f8d;--accent2-cfg:#b7791f;--accent-cfg-dark:#7fb0d8;--accent2-cfg-dark:#e0b465;}
+html:root:not([data-theme="dark"]){--accent:var(--accent-cfg);--accent-2:var(--accent2-cfg);}
+html[data-theme="dark"]{--accent:var(--accent-cfg-dark);--accent-2:var(--accent2-cfg-dark);}
+</style>
+<script>(function(){var d=document.documentElement;d.classList.add('js');var p='auto';try{p=localStorage.getItem('theme')||'auto';}catch(e){}var dark=p==='dark'||(p==='auto'&&window.matchMedia&&window.matchMedia('(prefers-color-scheme: dark)').matches);d.setAttribute('data-theme',dark?'dark':'light');d.setAttribute('data-theme-pref',p);})();</script>
+</head>
+<body data-page="blog">
+<a class="skip-link" href="#main">跳到主要内容</a>
+<header class="site-header" id="siteHeader">
+  <div class="wrap header-inner">
+    <a class="brand" href="index.html" aria-label="崔博凯 首页">
+      <span class="brand-mark" aria-hidden="true">CBK</span>
+      <span class="brand-text">
+        <strong>崔博凯</strong>
+        <small>个人主页 · 作品与笔记</small>
+      </span>
+    </a>
+    <nav class="nav" id="nav" aria-label="主导航"><a class="nav-link" href="index.html">首页</a><a class="nav-link" href="publications.html">作品</a><a class="nav-link" href="projects.html">项目</a><a class="nav-link is-active" href="blog.html" aria-current="page">笔记</a><a class="nav-link" href="about.html">关于</a></nav>
+    <div class="header-actions">
+      <button class="icon-btn" id="themeToggle" type="button" aria-label="切换深浅色主题" title="切换主题">
+        <span class="icon-sun"><svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M12 17a5 5 0 1 1 0-10 5 5 0 0 1 0 10Zm0-13a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0V5a1 1 0 0 1 1-1Zm0 13a1 1 0 0 1 1 1v2a1 1 0 1 1-2 0v-2a1 1 0 0 1 1-1ZM4 12a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2H5a1 1 0 0 1-1-1Zm13 0a1 1 0 0 1 1-1h2a1 1 0 1 1 0 2h-2a1 1 0 0 1-1-1ZM6.3 6.3a1 1 0 0 1 1.4 0l1.4 1.4A1 1 0 0 1 7.7 9.1L6.3 7.7a1 1 0 0 1 0-1.4Zm9.6 9.6a1 1 0 0 1 1.4 0l1.4 1.4a1 1 0 0 1-1.4 1.4l-1.4-1.4a1 1 0 0 1 0-1.4Zm2.8-9.6a1 1 0 0 1 0 1.4L17.3 9.1a1 1 0 0 1-1.4-1.4l1.4-1.4a1 1 0 0 1 1.4 0ZM7.7 14.9a1 1 0 0 1 0 1.4l-1.4 1.4a1 1 0 0 1-1.4-1.4l1.4-1.4a1 1 0 0 1 1.4 0Z"/></svg></span><span class="icon-moon"><svg class="icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true" focusable="false"><path d="M12.7 2.3a1 1 0 0 1 .2 1.1 7.5 7.5 0 0 0 9.7 9.7 1 1 0 0 1 1.3 1.3A10 10 0 1 1 11.6 2.1a1 1 0 0 1 1.1.2Z"/></svg></span>
+      </button>
+      <button class="icon-btn nav-toggle" id="navToggle" type="button" aria-label="展开导航" aria-expanded="false" aria-controls="nav">
+        <span class="burger" aria-hidden="true"></span>
+      </button>
+    </div>
+  </div>
+  <div class="scroll-progress" id="scrollProgress" aria-hidden="true"></div>
+</header>
+<main id="main">
+
+<section class="page-header">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>Notes</p>
+    <h1 class="page-title" data-reveal>笔记与随想</h1>
+    <p class="page-intro" data-reveal>学习记录、踩坑笔记，和一些还不成熟的想法。</p>
+  </div>
+</section>
+<section class="section">
+  <div class="wrap">
+    
+    <div class="empty-note"><p>还没有写过文章。</p></div>
+
+  </div>
+</section>
+
+</main>
+<footer class="site-footer">
+  <div class="wrap footer-inner">
+    <div class="footer-brand">
+      <strong>崔博凯</strong>
+      <p>本站由一套零依赖的静态站点生成器构建，托管在 GitHub Pages 上。</p>
+    </div>
+    <div class="footer-meta">
+      <div class="footer-links">
+        <a href="index.html">首页</a><a href="publications.html">作品</a><a href="projects.html">项目</a><a href="blog.html">笔记</a><a href="about.html">关于</a>
+        <a href="rss.xml">RSS</a>
+      </div>
+      <p class="footer-copy">© 2022–<span id="year"></span> 崔博凯 · CC BY-NC-SA 4.0</p>
+    </div>
+  </div>
+</footer>
+<button class="to-top" id="toTop" type="button" aria-label="回到顶部"><svg class="icon" viewBox="0 0 24 24" width="20" height="20" aria-hidden="true" focusable="false"><path d="M13.3 5.3 12 4l-8 8 8 8 1.3-1.3L7.6 13H20v-2H7.6l5.7-5.7Z"/></svg></button>
+<script src="main.js" defer></script>
+</body>
+</html>
