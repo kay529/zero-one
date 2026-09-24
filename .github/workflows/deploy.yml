@@ -1,0 +1,74 @@
+# 从 GitHub Actions 构建并发布到 GitHub Pages。
+#
+# 这个工作流会自动定位项目目录（放在仓库根目录，或放在 personal-blog/ 子目录，都能跑），
+# 所以不需要为了部署去调整仓库里的层级。
+#
+# 用法：仓库 Settings → Pages → Source 选 "GitHub Actions"。
+# 之后每次推送改动，它都会自动执行 node build.mjs 并把 dist/ 发布出去。
+
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: 定位项目目录
+        id: locate
+        run: |
+          if [ -f build.mjs ]; then
+            echo "dir=." >> "$GITHUB_OUTPUT"
+            echo "项目在仓库根目录"
+          elif [ -f personal-blog/build.mjs ]; then
+            echo "dir=personal-blog" >> "$GITHUB_OUTPUT"
+            echo "项目在 personal-blog/ 子目录"
+          else
+            echo "在仓库里找不到 build.mjs，请检查上传是否完整" >&2
+            exit 1
+          fi
+
+      - name: 构建站点
+        working-directory: ${{ steps.locate.outputs.dir }}
+        run: node build.mjs
+
+      - name: 产物自检（死链、meta 标签、RSS/sitemap）
+        working-directory: ${{ steps.locate.outputs.dir }}
+        run: node tools/check.mjs
+
+      # 注意：不要加 enablement: true。configure-pages 的这个参数要求提供
+      # GITHUB_TOKEN 之外的令牌（PAT 或 GitHub App），用默认令牌会直接失败。
+      # 所以 Pages 需要先在仓库 Settings → Pages → Source 里选择 “GitHub Actions”。
+      - uses: actions/configure-pages@v5
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ steps.locate.outputs.dir }}/dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
