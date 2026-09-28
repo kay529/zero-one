@@ -398,20 +398,6 @@ node tools/check.mjs  # 自检：死链、meta 标签、RSS/sitemap
 **为什么选这个协议**：它允许别人转载、引用、改编你的文章（学术引用友好），
 只要求署名、且衍生作品沿用同样的协议。个人学术主页最常见的开放内容协议之一。
 
-**⚠️ 为什么不用带「非商用」的 CC BY-NC-SA 4.0**：
-GitHub 的授权识别**不支持任何 NC 变体**。它的识别数据源是 choosealicense.com 的
-`_licenses/` 目录，那里只有 `cc-by-4.0` / `cc-by-sa-4.0` / `cc0-1.0` 三个 CC 协议。
-所以只要协议带 NC，无论 `LICENSE` 写得多标准，仓库页都会一直显示 `Other`，
-**永远不会有授权徽章**。验证方法：
-
-```bash
-curl -s "https://api.github.com/search/repositories?q=license:cc-by-nc-sa-4.0&per_page=1" \
-| python -c "import sys,json;print('GitHub 支持' if 'total_count' in json.load(sys.stdin) else 'GitHub 不支持')"
-```
-
-还要分清一件事：**NC 限制的是「别人能不能拿你的内容赚钱」，跟「你自己会不会侵权」无关。**
-自己是否侵权取决于内容来源（图片、字体、他人论文图表）干不干净，与选哪个协议无关。
-
 **如果以后想换**，注意两点：
 
 1. CC 协议**不可撤销**——已经按旧协议发布出去的内容，别人可以继续按旧协议使用。

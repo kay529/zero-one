@@ -61,8 +61,6 @@ node tools/check.mjs  # 自检：死链、meta 标签、RSS / sitemap
 [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh)
 授权：欢迎转载和改编，只需署名、衍生作品沿用同样的协议。详见 [`LICENSE`](LICENSE)。
 
-
-
 第三方依赖的授权情况见 [`personal-blog/THIRD-PARTY-NOTICES.md`](personal-blog/THIRD-PARTY-NOTICES.md)。
 
 ## 联系
