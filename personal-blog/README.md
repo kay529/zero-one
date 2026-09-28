@@ -9,13 +9,21 @@
 
 ## 授权
 
-- **站点的文字、图片等内容**：CC BY-NC-SA 4.0，全文见仓库根目录的 [`../LICENSE`](../LICENSE)
-- **构建器代码**：随站点一起以 CC BY-NC-SA 4.0 授权（个人站，不单独拆分协议）
+- **站点的文字、图片等内容**：CC BY-SA 4.0，全文见仓库根目录的 [`../LICENSE`](../LICENSE)
+- **构建器代码**：随站点一起以 CC BY-SA 4.0 授权（个人站，不单独拆分协议）
 - **第三方资源**：见 [`THIRD-PARTY-NOTICES.md`](./THIRD-PARTY-NOTICES.md)
 
-页脚的 `© 2022–2026 崔博凯 · CC BY-NC-SA 4.0` 由 `site.config.json` 的
+页脚的 `© 2022–2026 崔博凯 · CC BY-SA 4.0` 由 `site.config.json` 的
 `site.startYear` 和 `site.license` 两个字段生成。授权名一旦公开就**不可撤销**
 （这是 CC 协议的硬规定），想换名字前先想清楚怎么写。
+
+> **为什么不是 CC BY-NC-SA 4.0？** GitHub 的授权识别**不支持任何非商用（NC）变体**
+> —— choosealicense.com（识别数据源）里只有 `cc-by-4.0` / `cc-by-sa-4.0` / `cc0-1.0`
+> 三个 CC 协议。带 NC 的话，无论 LICENSE 写得多标准，仓库页永远显示 `Other`、
+> 永远不会有授权徽章。
+>
+> 另外：**NC 限制的是「别人能不能拿你的内容赚钱」，跟「你自己会不会侵权」无关。**
+> 自己是否侵权取决于内容来源（图片、字体、他人成果）干不干净，与选哪个协议无关。
 
 ## 快速开始
 
@@ -28,8 +36,7 @@ node tools/check.mjs  # 自检：死链、meta 标签、RSS/sitemap
 ## 目录结构
 
 ```
-personal-blog/
-├── LICENSE                内容授权全文（CC BY-NC-SA 4.0）
+personal-blog/              ← 本目录
 ├── THIRD-PARTY-NOTICES.md 用到的第三方资源及授权
 ├── site.config.json       ★ 全站配置（名字、域名、导航、主题色）
 ├── build.mjs              构建入口
@@ -51,6 +58,9 @@ personal-blog/
 ```
 
 **要加内容，先看 [`content/README.md`](./content/README.md)。**
+
+> 授权全文 `LICENSE` 放在**仓库根目录**、不在本目录里 ——
+> GitHub 只扫描仓库根来识别授权，放子目录不会被认。
 
 ## 当前状态
 

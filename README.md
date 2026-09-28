@@ -9,7 +9,7 @@
 ```
 zero-one/
 ├── README.md                 你正在看的文件
-├── LICENSE                   CC BY-NC-SA 4.0（内容授权）
+├── LICENSE                   CC BY-SA 4.0（内容授权）
 ├── .github/workflows/        推送到 main 后自动构建并发布到 Pages
 └── personal-blog/            网站本体，构建脚本和内容都在这里
 ```
@@ -58,9 +58,12 @@ node tools/check.mjs  # 自检：死链、meta 标签、RSS / sitemap
 ## 授权
 
 本站的**文章、图片等文字内容**采用
-[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.zh)
-授权：欢迎转载和改编，需署名、不得用于商业用途、衍生作品需用同样的协议分享。
-详见 [`LICENSE`](LICENSE)。
+[CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/deed.zh)
+授权：欢迎转载和改编，只需署名、衍生作品沿用同样的协议。详见 [`LICENSE`](LICENSE)。
+
+> 没有用带「非商用」的 CC BY-NC-SA 4.0，是因为 GitHub 的授权识别**不支持任何
+> NC 变体** —— 带 NC 的话仓库页会一直显示 `Other`、拿不到授权徽章。
+> 另外 NC 限制的是「别人能否拿你的内容赚钱」，与「自己会不会侵权」是两回事。
 
 第三方依赖的授权情况见 [`personal-blog/THIRD-PARTY-NOTICES.md`](personal-blog/THIRD-PARTY-NOTICES.md)。
 
