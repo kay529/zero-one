@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "title": "ISAT Line Tool Plugin",
+    "year": 2026,
+    "status": "active",
+    "summary": "为图像分割标注工具 ISAT 写的中心线拉线插件。按住左键沿着细长目标的脊线拖一下、松手，就把这条中心线扩成指定宽度的多边形，直接落成一条正常标注——类别、分组、颜色、标注列表全部保持标准状态，一次手势就是一条标注。适用于显微图像里的纤维、膜、血管，遥感影像里的道路、河流，以及裂缝、管线、笔迹等长条目标。",
+    "tags": ["Python", "PyQt5", "Shapely", "图像标注", "ISAT 插件"],
+    "links": [
+      { "label": "GitHub 仓库", "href": "https://github.com/kay529/isat_plugin_line_tool", "icon": "code" },
+      { "label": "说明文档", "href": "https://github.com/kay529/isat_plugin_line_tool/blob/main/README.md", "icon": "external" }
+    ],
+    "featured": true
+  }
+]

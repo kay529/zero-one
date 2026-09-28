@@ -194,15 +194,50 @@ git push
 
 推送即自动重新构建部署，不需要你做任何其他操作。
 
+### 3.4 仓库可以保持私有（GitHub Pages 不行，Cloudflare 可以）
+
+这是一个真实的取舍，取决于你更想要「那个地址」还是「源码不公开」：
+
+| 你想要的 | 只能用 | 仓库必须 |
+| --- | --- | --- |
+| `kay529.github.io/zero-one/` 这个地址 | GitHub Pages | **Public** |
+| 源码保持私有 | Cloudflare Pages | Private 也可以 |
+
+Cloudflare 官方文档明确写了它的 GitHub 集成 **both private and public repositories are supported**，
+免费套餐同样适用 —— 它用自己的 GitHub App 读取你的私有仓库，在云端构建后发布。
+所以想保持私有的话，把上面流程里的仓库换成私有的、其他步骤完全一样即可，
+只是最终地址是 `<项目名>.pages.dev`，而不是 `kay529.github.io/zero-one/`。
+
+> `kay529.github.io` 这个域名属于 GitHub，只有用 GitHub Pages 才能拿到。
+> 以后如果你买了自己的域名，就可以「私有仓库 + Cloudflare Pages + 自己的域名」，那时两样都有。
+
+关于「改成 Public 还能改回来吗」：**可以随时改回来**，没有冷却期。但两点要清楚：
+
+1. 改回私有后，**已发布的 GitHub Pages 网站会自动取消发布**（免费账号就没站了）
+2. 已经被别人 fork 走的副本会保持公开并脱离本仓库 —— 也就是说「改回来」只对你自己生效，
+   对已经拿走的副本无效。所以公开前确认里面没有不该公开的东西
+
 ---
 
 ## 4. 路线 B（备选）：GitHub Pages
 
-如果不想用 Cloudflare，这套代码同样可以跑在 GitHub Pages 上。项目里已经放好了 `.github/workflows/deploy.yml`，你只需要：
+如果不想用 Cloudflare，这套代码同样可以跑在 GitHub Pages 上。项目里已经放好了
+`.github/workflows/deploy.yml`（它会自动识别项目是在仓库根目录还是在 `personal-blog/` 子目录，所以不用为了部署调整层级）。
 
 1. 把代码推到 GitHub（同上）
 2. 仓库 **Settings → Pages → Source** 选择 **GitHub Actions**
-3. 推一次代码（或手动触发 workflow）
+3. 推一次代码（或到 Actions 标签页手动 Run workflow）
+
+> ⚠️ **两个实测踩过的坑**（用网页上传时特别容易中）：
+>
+> 1. **网页拖拽上传会漏掉以 `.` 开头的文件夹**，`.github/` 很可能根本没上传上去。
+>    去仓库首页确认能看到 `.github` 目录；没有的话用
+>    **Add file → Create new file**，文件名直接填 `.github/workflows/deploy.yml`
+>    （输入 `/` 会自动建目录），再把内容粘进去。
+> 2. **拖整个文件夹会把文件夹本身也传进去**，变成 `仓库/personal-blog/build.mjs`。
+>    这本身不影响 Actions 部署（上面的工作流会处理），但如果你想用「分支发布」，
+>    根目录没有 `index.html` 就会 404 —— 而且 Pages 的分支发布**只能选 `/` 或 `/docs`，没有 `/dist`**。
+>    正确做法是打开文件夹、全选里面的文件再拖。
 
 Actions 会自动执行 `node build.mjs` + `node tools/check.mjs`（死链自检），然后发布。
 
@@ -332,6 +367,7 @@ summary: 一句话摘要，会显示在卡片和 RSS 里。
 | `site.affiliation` ★ | 单位 / 学校 |
 | `hero.stats` ★ | 首页三个数字 |
 | `social[].href` ★ | GitHub / Scholar / ORCID 链接 |
+| `site.license` | 页脚显示的授权名称（默认 `CC BY-NC-SA 4.0`） |
 | `theme.accent` | 主题色，改一个色值全站换色 |
 
 ### 三条命令
@@ -347,6 +383,35 @@ node tools/check.mjs  # 自检：死链、meta 标签、RSS/sitemap
 ### 简历 PDF
 
 把简历文件放到 `static/cv.pdf`，首页的「下载简历」按钮就会自动生效。没有这个文件时，按钮会自动指向在线简历页，不会出现死链。
+
+### 授权 / LICENSE
+
+站点的内容授权叫 **CC BY-NC-SA 4.0**（署名 — 非商业性使用 — 相同方式共享），
+它同时出现在两个地方，措辞必须一致：
+
+| 位置 | 内容 |
+| --- | --- |
+| 页脚（每个页面） | 由 `site.config.json` 的 `site.license` 生成 |
+| 仓库根目录 `LICENSE` | CC 官方协议全文，纯英文，不要翻译、不要改字 |
+| 仓库根目录 `README.md` | 「授权」一节，有中文说明和链接 |
+
+**为什么选这个协议**：它允许别人转载、引用、改编你的文章（学术引用友好），
+但要求署名、不能拿去商用、衍生作品也得用同样的协议。对个人学术主页来说是最常见的搭配。
+
+**如果以后想换**，注意两点：
+
+1. CC 协议**不可撤销**——已经按旧协议发布出去的内容，别人可以继续按旧协议使用。
+   想换只能从换的那一刻往后生效。
+2. 页脚文案（`site.license`）和 `LICENSE` 文件要一起换，别只改一个。
+
+代码部分如果想单独用更宽松的协议（比如 MIT），可以在 `LICENSE` 里追加一段
+「本仓库中 `personal-blog/` 下的可执行代码另按 MIT 授权」，但个人博客一般不必这么细。
+
+### 第三方资源
+
+用到的东西记在 `THIRD-PARTY-NOTICES.md` 里，方便日后核查。目前站点是零依赖的：
+没引入任何 JS 库、图标库、Web Font 或 CDN 资源，字体走系统字体栈。
+以后往站里加网上下载的图片、插画、代码片段时，记得回来补一行。
 
 ---
 
@@ -494,4 +559,6 @@ curl https://get.acme.sh | sh -s email=you@example.com
 - [ ] `content/posts/` 里的示例文章已删除或替换
 - [ ] `static/cv.pdf` 已放入（可选）
 - [ ] 本地跑过 `node build.mjs && node tools/check.mjs`，输出 `✓ 所有内部链接……均正常`
+- [ ] 仓库根目录有 `LICENSE`（协议全文）和 `README.md`，两处的授权名称一致
+- [ ] GitHub 仓库页面右上角能看到 licence 标签（说明识别成功了）
 - [ ] 域名到期时间已确认，自动续费已开启

@@ -2,7 +2,20 @@
 
 一套**零依赖**的静态站点生成器。没有 `npm install`，没有 `node_modules`，只用 Node 自带的模块。
 
-项目位置：`D:\personal-blog`　·　计划上线地址：`https://kay529.github.io/zero-one/`
+**线上地址：<https://kay529.github.io/zero-one/>**（已上线，就是你看到的那个站）
+
+> 这份文件是给「改代码的人」看的。只想改文字内容的话，
+> 看 [`content/README.md`](./content/README.md) 就够了，不用读这里。
+
+## 授权
+
+- **站点的文字、图片等内容**：CC BY-NC-SA 4.0，全文见仓库根目录的 [`../LICENSE`](../LICENSE)
+- **构建器代码**：随站点一起以 CC BY-NC-SA 4.0 授权（个人站，不单独拆分协议）
+- **第三方资源**：见 [`THIRD-PARTY-NOTICES.md`](./THIRD-PARTY-NOTICES.md)
+
+页脚的 `© 2022–2026 崔博凯 · CC BY-NC-SA 4.0` 由 `site.config.json` 的
+`site.startYear` 和 `site.license` 两个字段生成。授权名一旦公开就**不可撤销**
+（这是 CC 协议的硬规定），想换名字前先想清楚怎么写。
 
 ## 快速开始
 
@@ -16,6 +29,8 @@ node tools/check.mjs  # 自检：死链、meta 标签、RSS/sitemap
 
 ```
 personal-blog/
+├── LICENSE                内容授权全文（CC BY-NC-SA 4.0）
+├── THIRD-PARTY-NOTICES.md 用到的第三方资源及授权
 ├── site.config.json       ★ 全站配置（名字、域名、导航、主题色）
 ├── build.mjs              构建入口
 ├── preview.mjs            本地预览服务器

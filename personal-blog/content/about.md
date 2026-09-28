@@ -11,7 +11,9 @@
 
 ## 项目、论文、专利
 
-（待补充）
+- **[ISAT Line Tool Plugin](https://github.com/kay529/isat_plugin_line_tool)** · 2026 —— 为图像分割标注工具 ISAT 写的中心线拉线插件，已开源（MIT）。沿着脊线拖一下就能把细长目标标成多边形，用于显微纤维、遥感道路这类目标的标注。详见[项目页](projects.html)。
+
+其他论文、专利待补充。
 
 ## 技能
 
